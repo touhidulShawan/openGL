@@ -1,11 +1,15 @@
 > This repo used to store my openGL codes of my University class
 
-Files in there Repo
+Files in Repo
 
-> Drawing a house
->
-> 1. house.cpp
+*File that draw a house 👉* 
+`house.cpp`  
 
-> Drawing a chess board
->
-> 2. chess_board.cpp
+*File that draw a chess board 👉* 
+`chess_board.cpp`
+
+*File that draw a simple animation with a box 👉* 
+`simple_animation.cpp`
+
+*File that draw a simple animation with another box with translation 👉*
+`simple_animation_with_translation.cpp`
