@@ -13,3 +13,5 @@ Files in Repo
 
 *File that draw a simple animation with another box with translation 👉*
 `simple_animation_with_translation.cpp`
+
+*File that change shape color when special key like f1, f2, f3, click and esc to close window 👉* `glutKeyboard.cpp`
