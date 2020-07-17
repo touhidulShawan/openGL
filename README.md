@@ -15,3 +15,7 @@ Files in Repo
 `simple_animation_with_translation.cpp`
 
 *File that change shape color when special key like f1, f2, f3, click and esc to close window 👉* `glutKeyboard.cpp`
+
+*Draw a circle 👉* `circle.cpp`
+
+*Draw a Half Moon 👉* `halfmoon.cpp`
