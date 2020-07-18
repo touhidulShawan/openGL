@@ -1,8 +1,3 @@
-/*
-TITLE: DRAW A EMOJI 
-ID: 171-15-9354
-NAME: MD. TOUHIDUL ISLAM SHAWAN
-*/
 
 #include <GL/glut.h>
 #include <cmath>
