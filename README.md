@@ -19,3 +19,5 @@ Files in Repo
 *Draw a circle 👉* `circle.cpp`
 
 *Draw a Half Moon 👉* `halfmoon.cpp`
+
+*Draw an Emoji 👉* `emoji.cpp`
