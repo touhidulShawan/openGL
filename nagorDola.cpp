@@ -1,10 +1,20 @@
 // #include <windows.h> // uncomment this if you are in windows machine
 #include <GL/glut.h>
 
+#include <iostream>
+
+using namespace std;
+
 void init();
 void draw();
 void reshape(int w, int h);
-// void drawRectangle(int x1, int x2, int y1, int y2);
+void normalKeypress(unsigned char key, int x, int y);
+
+// global variable
+
+static GLfloat spin = 0.0;
+// static float tx = 0.0;
+// static float ty = 0.0;
 
 int main(int argc, char **argv)
 {
@@ -18,6 +28,8 @@ int main(int argc, char **argv)
     // register callbacks
     glutDisplayFunc(draw);
     glutReshapeFunc(reshape);
+    glutKeyboardFunc(normalKeypress);
+    glutIdleFunc(draw);
 
     init();
 
@@ -86,6 +98,8 @@ void draw()
     glVertex2i(-100, 100);
     glEnd();
 
+    glPushMatrix();
+    glRotatef(spin, 0.0, 0.0, 1.0);
     // left seat handler of nagor dola
     glColor3f(.95, .44, 0.47);
     glBegin(GL_POLYGON);
@@ -104,7 +118,6 @@ void draw()
     glEnd();
 
     // left seat of nagor dola
-
     glColor3f(0.37, .88, 0.03);
     glBegin(GL_POLYGON);
     // bottom left to  bottom right
@@ -156,7 +169,7 @@ void draw()
     glVertex2i(200, 350);
     glVertex2i(200, 100);
     glEnd();
-
+    glPopMatrix();
     glutSwapBuffers();
 };
 
@@ -167,4 +180,47 @@ void reshape(int w, int h)
     glLoadIdentity();
     gluOrtho2D(-600, 600, -600, 600);
     glMatrixMode(GL_MODELVIEW);
+}
+
+// spin to left
+
+void spinToLeft()
+{
+    spin += 1;
+
+    if (spin > 360.0)
+    {
+        spin -= 360.0;
+    }
+    glutPostRedisplay();
+}
+
+void spinToRight()
+{
+    spin -= 1;
+    if (spin > 360.0)
+    {
+        spin -= 360.0;
+    }
+    glutPostRedisplay();
+}
+
+void normalKeypress(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+    case 'l':
+        spinToLeft();
+        break;
+
+    case 'r':
+        spinToRight();
+        break;
+
+    case 's':
+        glutIdleFunc(NULL);
+
+    default:
+        break;
+    }
 }
