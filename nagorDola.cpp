@@ -1,177 +1,45 @@
-// #include <windows.h> // uncomment this if you are in windows machine
+/*
+--------- LAB TASK - 5 ----------------
+ID: 171-15-9354
+NAME: MD. TOUHIDUL ISLAM SHAWAN
+PROBLEM NAME: DRAW A NOGORDOLA BY OPENGL
+*/
+
 #include <GL/glut.h>
-
-#include <iostream>
-
-using namespace std;
 
 void init();
 void draw();
 void reshape(int w, int h);
 void normalKeypress(unsigned char key, int x, int y);
+void specialKeypress(int key, int x, int y);
+void mousePress(int button, int state, int x, int y);
 
-// global variable
-
-static GLfloat spin = 0.0;
-// static float tx = 0.0;
-// static float ty = 0.0;
+static GLfloat spinAngle = 0.0;
 
 int main(int argc, char **argv)
 {
-    // glut initialization and create window
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowPosition(300, 100);
     glutInitWindowSize(600, 600);
-    glutCreateWindow("NagorDola");
+    glutCreateWindow("Nagor-Dola");
 
-    // register callbacks
     glutDisplayFunc(draw);
     glutReshapeFunc(reshape);
-    glutKeyboardFunc(normalKeypress);
-    glutIdleFunc(draw);
-
     init();
+
+    glutKeyboardFunc(normalKeypress);
+    glutSpecialFunc(specialKeypress);
+    glutMouseFunc(mousePress);
 
     glutMainLoop();
 }
 
 void init()
 {
-    glClearColor(1, 1, 1, 1); // make background white
+    glClearColor(1, 1, 1, 1);
+    glEnable(GL_DEPTH_TEST);
 }
-
-void draw()
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-    glLoadIdentity();
-
-    // draw base of nagordola
-    glColor3f(0.196, 0.15, 0.15);
-    glBegin(GL_POLYGON);
-    // bottom left to right
-    glVertex2i(-125, -600);
-    glVertex2i(175, -600);
-    // bottom right to top right
-    glVertex2i(175, -600);
-    glVertex2i(175, -450);
-    // top right to top left
-    glVertex2i(175, -450);
-    glVertex2i(-125, -450);
-    // top left to bottom left
-    glVertex2i(-125, -450);
-    glVertex2i(-125, -600);
-    glEnd();
-
-    // draw bar of nagordola
-    glColor3f(0.188, 0.192, 0.44);
-    glBegin(GL_POLYGON);
-    // bottom left to bottom right
-    glVertex2i(0, -450);
-    glVertex2i(50, -450);
-    // bottom right to top right
-    glVertex2i(50, -450);
-    glVertex2i(50, 100);
-    // top right to top left
-    glVertex2i(50, 100);
-    glVertex2i(0, 100);
-    // top left to bottom right
-    glVertex2i(0, 100);
-    glVertex2i(0, -450);
-    glEnd();
-
-    // body that hold every nagordola seat
-
-    glColor3f(0.6, 0.04, .90);
-    glBegin(GL_POLYGON);
-    // bottom left to bottom right
-    glVertex2i(-100, 100);
-    glVertex2i(150, 100);
-    // bottom right to top right
-    glVertex2i(150, 100);
-    glVertex2i(150, 350);
-    // top right to top left
-    glVertex2i(150, 350);
-    glVertex2i(-100, 350);
-    // top left to bottom right
-    glVertex2i(-100, 350);
-    glVertex2i(-100, 100);
-    glEnd();
-
-    glPushMatrix();
-    glRotatef(spin, 0.0, 0.0, 1.0);
-    // left seat handler of nagor dola
-    glColor3f(.95, .44, 0.47);
-    glBegin(GL_POLYGON);
-    // bottom left to bottom right
-    glVertex2i(-150, 150);
-    glVertex2i(-100, 150);
-    // bottom right to top right
-    glVertex2i(-100, 150);
-    glVertex2i(-100, 300);
-    // top right to top left
-    glVertex2i(-100, 300);
-    glVertex2i(-150, 300);
-    // top left to bottom left
-    glVertex2i(-150, 300);
-    glVertex2i(-150, 150);
-    glEnd();
-
-    // left seat of nagor dola
-    glColor3f(0.37, .88, 0.03);
-    glBegin(GL_POLYGON);
-    // bottom left to  bottom right
-    glVertex2i(-450, 100);
-    glVertex2i(-150, 100);
-    // bottom right to top right
-    glVertex2i(-150, 100);
-    glVertex2i(-150, 350);
-    // top right to top left
-    glVertex2i(-150, 350);
-    glVertex2i(-450, 350);
-    // top left to bottom left
-    glVertex2i(-450, 350);
-    glVertex2i(-450, 100);
-    glEnd();
-
-    // right seat handler of nagor dola
-
-    glColor3f(.95, .44, 0.47);
-    glBegin(GL_POLYGON);
-    // bottom left to  bottom right
-    glVertex2i(150, 150);
-    glVertex2i(200, 150);
-    // bottom right to top right
-    glVertex2i(200, 150);
-    glVertex2i(200, 300);
-    // top right to top left
-    glVertex2i(200, 300);
-    glVertex2i(150, 300);
-    // top left to bottom left
-    glVertex2i(150, 300);
-    glVertex2i(150, 150);
-    glEnd();
-
-    // right seat of nagor dola
-
-    glColor3f(0.45, 0.32, 0.886);
-    glBegin(GL_POLYGON);
-    // bottom left to  bottom right
-    glVertex2i(200, 100);
-    glVertex2i(500, 100);
-    // bottom right to top right
-    glVertex2i(500, 100);
-    glVertex2i(500, 350);
-    // top right to top left
-    glVertex2i(500, 350);
-    glVertex2i(200, 350);
-    // top left to bottom left
-    glVertex2i(200, 350);
-    glVertex2i(200, 100);
-    glEnd();
-    glPopMatrix();
-    glutSwapBuffers();
-};
 
 void reshape(int w, int h)
 {
@@ -182,28 +50,68 @@ void reshape(int w, int h)
     glMatrixMode(GL_MODELVIEW);
 }
 
-// spin to left
+void draw()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    // draw base of nagordola
+    glColor3f(0.196, 0.15, 0.15);
+    glRectf(-125, -450, 175, -600);
 
+    // draw bar of nagordola
+    glColor3f(0.188, 0.192, 0.44);
+    glRectf(0, 100, 50, -450);
+
+    // body that hold every nagordola seat
+    glColor3f(0.6, 0.04, .90);
+    glRectf(-100, 350, 150, 100);
+
+    glPushMatrix();
+    glRotatef(spinAngle, 0.0, 0.0, 1.0);
+    // left seat handler of nagor dola
+    glColor3f(.95, .44, 0.47);
+    glRectf(-150, 300, -100, 150);
+
+    // left seat of nagor dola
+    glColor3f(0.37, .88, 0.03);
+    glRectf(-450, 350, -150, 100);
+
+    // right seat handler of nagor dola
+    glColor3f(.95, .44, 0.47);
+    glRectf(150, 300, 200, 150);
+
+    // right seat of nagor dola
+    glColor3f(0.45, 0.32, 0.886);
+    glRectf(200, 350, 500, 100);
+    glPopMatrix();
+
+    glutSwapBuffers();
+}
+// spin to left
 void spinToLeft()
 {
-    spin += 1;
-
-    if (spin > 360.0)
+    spinAngle += 3;
+    if (spinAngle > 360.0)
     {
-        spin -= 360.0;
+        spinAngle -= 360.0;
     }
+
     glutPostRedisplay();
 }
-
+// spin to right
 void spinToRight()
 {
-    spin -= 1;
-    if (spin > 360.0)
+    spinAngle -= 3;
+    if (spinAngle > 360.0)
     {
-        spin -= 360.0;
+        spinAngle -= 360.0;
     }
+
     glutPostRedisplay();
 }
+
+// for keypress l key to spin left , r key to spin right and s to stop the spin
 
 void normalKeypress(unsigned char key, int x, int y)
 {
@@ -219,6 +127,48 @@ void normalKeypress(unsigned char key, int x, int y)
 
     case 's':
         glutIdleFunc(NULL);
+
+    default:
+        break;
+    }
+}
+
+// implementation of right arrow and left arrow
+
+void specialKeypress(int key, int x, int y)
+{
+    switch (key)
+    {
+    case GLUT_KEY_RIGHT:
+        spinToRight();
+        break;
+
+    case GLUT_KEY_LEFT:
+        spinToLeft();
+        break;
+
+    default:
+        break;
+    }
+}
+
+// implementation of mouse button
+void mousePress(int button, int state, int x, int y)
+{
+    switch (button)
+    {
+    case GLUT_LEFT_BUTTON:
+        if (state == GLUT_DOWN)
+        {
+            glutIdleFunc(spinToLeft);
+        }
+        break;
+
+    case GLUT_RIGHT_BUTTON:
+        if (state == GLUT_DOWN)
+        {
+            glutIdleFunc(spinToRight);
+        }
 
     default:
         break;
