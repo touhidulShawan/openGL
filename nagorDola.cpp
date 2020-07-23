@@ -5,6 +5,7 @@ NAME: MD. TOUHIDUL ISLAM SHAWAN
 PROBLEM NAME: DRAW A NOGORDOLA BY OPENGL
 */
 
+// #include <windows.h> // if you are in windows machine then uncomment it
 #include <GL/glut.h>
 
 void init();
