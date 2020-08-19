@@ -2,22 +2,24 @@
 
 Files in Repo
 
-*File that draw a house 👉* 
-`house.cpp`  
+_File that draw a house 👉_
+`house.cpp`
 
-*File that draw a chess board 👉* 
+_File that draw a chess board 👉_
 `chess_board.cpp`
 
-*File that draw a simple animation with a box 👉* 
+_File that draw a simple animation with a box 👉_
 `simple_animation.cpp`
 
-*File that draw a simple animation with another box with translation 👉*
+_File that draw a simple animation with another box with translation 👉_
 `simple_animation_with_translation.cpp`
 
-*File that change shape color when special key like f1, f2, f3, click and esc to close window 👉* `glutKeyboard.cpp`
+_File that change shape color when special key like f1, f2, f3, click and esc to close window 👉_ `glutKeyboard.cpp`
 
-*Draw a circle 👉* `circle.cpp`
+_Draw a circle 👉_ `circle.cpp`
 
-*Draw a Half Moon 👉* `halfmoon.cpp`
+_Draw a Half Moon 👉_ `halfmoon.cpp`
 
-*Draw an Emoji 👉* `emoji.cpp`
+_Draw an Emoji 👉_ `emoji.cpp`
+
+_Draw a frog 👉_ `frog.cpp`
